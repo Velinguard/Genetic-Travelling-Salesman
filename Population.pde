@@ -15,7 +15,10 @@ class Population{
   void breed() {
     Path[] newPath = new Path[popSize];
     double fitSum = calculateWeights();
-    for (int i = 0; i < popSize; i++) {
+    for (int i = 0; i < popSize / 10; i++){
+      newPath[i] = new Path(places);  
+    }
+    for (int i = popSize / 10; i < popSize; i++) {
       newPath[i] = selectParent(fitSum).breed(selectParent(fitSum));
     }
     newPath[0] = paths[best];
@@ -24,8 +27,9 @@ class Population{
   
   void draw() {
     paths[best].draw();  
-    for (int i = 0;i < 10; i++){
-      text(paths[best].path[i] + "->", 10 + 10 * i, 800);
+    textSize(26);
+    for (int i = 0;i < places; i++){
+      //text(paths[best].path[i] + "->", 10 + 60 * i, 800);
     }
   }
   
